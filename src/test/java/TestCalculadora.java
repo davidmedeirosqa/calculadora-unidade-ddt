@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test; // JUnit 5
 import com.iterasys.Main; // Classe que será testada
 import static org.junit.jupiter.api.Assertions.assertEquals; // Asserts do JUnit 5
 import org.junit.jupiter.params.ParameterizedTest; // DDT
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource; // DDT
 
 // 3- Classe
@@ -74,4 +75,19 @@ public class TestCalculadora {
          float resultAtual = Main.somar(num1, num2); // Execução
          assertEquals(resultEsperado, resultAtual); // Verificação
      }
+
+     @ParameterizedTest
+     @CsvFileSource(resources = "/csv/somar.csv", numLinesToSkip = 1, delimiter = ',')
+     public void testSomarCSV(float num1, float num2, float resultEsperado) { 
+        // Os dados de entrada e o resultado esperado são lidos da massa de teste acima
+        float resultAtual = Main.somar(num1, num2); // Execução
+        assertEquals(resultEsperado, resultAtual); // Verificação
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/csv/multiplicar.csv", numLinesToSkip = 1, delimiter = ',')
+    public void testMultiplicarCSV(float num1, float num2, float resultEsperado){
+        float resultAtual = Main.multiplicar(num1, num2);
+        assertEquals(resultEsperado, resultAtual);
+    }
 }
