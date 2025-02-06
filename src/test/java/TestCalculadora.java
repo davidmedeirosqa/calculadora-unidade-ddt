@@ -92,4 +92,6 @@ public class TestCalculadora {
         float resultAtual = Main.multiplicar(num1, num2);
         assertEquals(resultEsperado, resultAtual);
     }
+
+    // Testar velocidade de execução dos testes -> mvn test
 }
